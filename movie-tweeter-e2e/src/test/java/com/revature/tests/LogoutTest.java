@@ -1,5 +1,6 @@
 package com.revature.tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -38,7 +39,14 @@ public class LogoutTest {
 
 	@Then("I return to the login page")
 	public void i_return_to_the_login_page() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+//	    this.movieTweeterPage = new MovieTweeterPage(this.driver);
+	    
+	    
+	    //not sure what to look for here
+//		String expectedAddedReceiptDescriptionText = "E2E test";
+//		
+//		Assertions.assertEquals(expectedAddedReceiptDescriptionText, this.movieTweeterPage.getFirstReimbursementDescrition().getText());
+//		
+		this.driver.quit();
 	}
 }

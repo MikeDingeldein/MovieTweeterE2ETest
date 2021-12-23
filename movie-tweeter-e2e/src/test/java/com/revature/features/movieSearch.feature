@@ -5,7 +5,7 @@ Given I am at the search module
 When I type in an movie title of <movieName>
 
 And I click the Search button
-Then I should see the result
+Then I should see the movie title search results <movieResults>
 
 Examples:
 | movieName | 
