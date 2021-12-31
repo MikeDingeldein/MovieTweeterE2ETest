@@ -22,30 +22,26 @@ public class LogoutTest {
 
 		this.driver = new ChromeDriver();
 
-		this.driver.get("http://localhost:5500");
+		this.driver.get("http://localhost:4200");
 		this.movieTweeterPage = new MovieTweeterPage(driver);
 		//open login modal
 		this.movieTweeterPage.getSignInButton().click();
 		//on login modal
 		this.movieTweeterPage.getUsernameInput().sendKeys(string);
-		this.movieTweeterPage.getPasswordInput().sendKeys(string);
+		this.movieTweeterPage.getPasswordInput().sendKeys(string2);
 		this.movieTweeterPage.getLoginButton().click();
 	}
 
 	@When("I click the logout button")
 	public void i_click_the_logout_button() {
-		this.movieTweeterPage.getLoginButton().click();
+		this.movieTweeterPage.getSignOutButton().click();
 	}
 
 	@Then("I return to the login page")
 	public void i_return_to_the_login_page() {
-//	    this.movieTweeterPage = new MovieTweeterPage(this.driver);
-	    
-	    
-	    //not sure what to look for here
-//		String expectedAddedReceiptDescriptionText = "E2E test";
-//		
-//		Assertions.assertEquals(expectedAddedReceiptDescriptionText, this.movieTweeterPage.getFirstReimbursementDescrition().getText());
+		String expectedSearchHeadingText = "Search Titles";
+		
+		Assertions.assertEquals(expectedSearchHeadingText, this.movieTweeterPage.getSearchTitles().getText());
 //		
 		this.driver.quit();
 	}

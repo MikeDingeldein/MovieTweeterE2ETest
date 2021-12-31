@@ -22,12 +22,12 @@ public class MovieSearchTest {
 
 		this.driver = new ChromeDriver();
 
-		this.driver.get("http://localhost:5500");
+		this.driver.get("http://localhost:4200");
 		this.movieTweeterPage = new MovieTweeterPage(driver);
 		// open login modal
 		this.movieTweeterPage.getSignInButton().click();
 		// on login modal
-		this.movieTweeterPage.getUsernameInput().sendKeys("JohnDoe");
+		this.movieTweeterPage.getUsernameInput().sendKeys("JohnDoeFake");
 		this.movieTweeterPage.getPasswordInput().sendKeys("password");
 		this.movieTweeterPage.getLoginButton().click();
 
@@ -44,34 +44,44 @@ public class MovieSearchTest {
 	}
 
 	@When("I click the Search button")
-	public void i_click_the_search_button() {
+	public void i_click_the_search_button() throws InterruptedException {
 		this.movieTweeterPage.getMovieTitleSearchButton().click();
 	}
 
-	@Then("I should see the movie title search results <movieResults>")
-	public void i_should_see_the_movie_title_search_results_movie_results() {
-//	    this.movieTweeterPage = new MovieTweeterPage(this.driver);
-	    
-	    
-	    //NOt sure what to assert
-//		String expectedAddedReceiptDescriptionText = "E2E test";
-//		
-//		Assertions.assertEquals(expectedAddedReceiptDescriptionText, this.movieTweeterPage.getFirstReimbursementDescrition().getText());
-//		
-//		this.driver.quit();
+	@Then("I should see the movie title search results {string}")
+	public void i_should_see_the_movie_title_search_results(String string) {
+		String expectedErrorHeadingText = string;
+		
+		Assertions.assertEquals(expectedErrorHeadingText, this.movieTweeterPage.getSearchMoviesFirstResult().getText());
+		
+		this.driver.quit();
 	}
 
-	@Then("I should not see a result")
-	public void i_should_not_see_a_result() {
-//	    this.movieTweeterPage = new MovieTweeterPage(this.driver);
-	    
-	    
-	    //NOt sure what to assert
-//		String expectedAddedReceiptDescriptionText = "E2E test";
+	@Then("I should not see an error message")
+	public void i_should_not_see_an_error_message() {
+		String expectedErrorHeadingText = "No results found";
+		
+		Assertions.assertEquals(expectedErrorHeadingText, this.movieTweeterPage.getMovieTitleSearchError().getText());
+		
+		this.driver.quit();
+	}
+	
+//	@Then("I should see the movie title search results <movieResults>")
+//	public void i_should_see_the_movie_title_search_results_movie_results() {
+//		String expectedErrorHeadingText = "Invalid username or password";
 //		
-//		Assertions.assertEquals(expectedAddedReceiptDescriptionText, this.movieTweeterPage.getFirstReimbursementDescrition().getText());
+//		Assertions.assertEquals(expectedErrorHeadingText, this.movieTweeterPage.getSearchTitles().getText());
 //		
 //		this.driver.quit();
-	}
+//	}
+//
+//	@Then("I should not see a result")
+//	public void i_should_not_see_a_result() {
+//		String expectedErrorHeadingText = "No results found";
+//		
+//		Assertions.assertEquals(expectedErrorHeadingText, this.movieTweeterPage.getMovieTitleSearchError().getText());
+//		
+//		this.driver.quit();
+//	}
 
 }

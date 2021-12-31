@@ -17,9 +17,17 @@ public class MovieTweeterPage {
 	@FindBy(xpath = "//strong[contains(text(),'Sign up')]")
 	private WebElement signUpButton;
 
-	@FindBy(xpath = "//strong[contains(text(),'Sign In')]")
-
+	@FindBy(xpath = "//body/app-root[1]/nav[1]/div[2]/div[2]/div[1]/div[1]/button[1]")
 	private WebElement signInButton;
+
+	@FindBy(xpath = "//strong[contains(text(),'Sign Out')]")
+	private WebElement signOutButton;
+
+	@FindBy(xpath = "//strong[contains(text(),'Search Titles')]")
+	private WebElement searchTitles;
+
+	@FindBy(xpath = "//body/app-root[1]/app-all-reviews[1]/div[1]/app-movie-search[1]/div[2]/div[1]/div[1]/div[1]/div[2]/p[1]")
+	private WebElement searchMoviesFirstResult;
 
 	// Sign In model
 
@@ -34,9 +42,9 @@ public class MovieTweeterPage {
 
 	@FindBy(xpath = "//p[contains(text(),'Invalid username or password')]")
 	private WebElement invalidLoginMessage;
-	
+
 	// Sign Up model
-	
+
 	@FindBy(xpath = "//body/app-root[1]/div[1]/div[2]/section[1]/div[1]/div[1]/input[1]")
 	private WebElement usernameSignupInput;
 
@@ -46,33 +54,51 @@ public class MovieTweeterPage {
 	@FindBy(xpath = "//button[contains(text(),'Signup')]")
 	private WebElement signupButton;
 
-	@FindBy(xpath = "")//not working
+	@FindBy(xpath = "") 
 	private WebElement invalidSignupMessage;
-	
+
 	// Movie review
-	
-	@FindBy(xpath = "")//not working
-	private WebElement movieReviewImdbIDInput;
-	
-	@FindBy(xpath = "")//not working
+
+	@FindBy(xpath = "//strong[contains(text(),'Create Review')]") // not working
+	private WebElement newMovieReview;
+
+	// Movie Review Modal
+	@FindBy(xpath = "//body/app-root[1]/div[1]/div[2]/section[1]/div[1]/div[1]/input[1]") // not working
+	private WebElement movieReviewTitleInput;
+
+	@FindBy(xpath = "//body/app-root[1]/div[1]/div[2]/section[1]/div[2]/div[1]/input[1]") // not working
+	private WebElement movieReviewBodyInput;
+
+	@FindBy(xpath = "//body/app-root[1]/div[1]/div[2]/section[1]/div[3]/div[1]/input[1]") // not working
 	private WebElement movieReviewRatingInput;
-	
-	@FindBy(xpath = "")//not working
+
+
+
+	@FindBy(xpath = "//body/app-root[1]/div[1]/div[2]/section[1]/div[4]/div[1]/input[1]") // not working
+	private WebElement movieReviewImdbIDInput;
+
+	@FindBy(xpath = "//button[contains(text(),'Publish')]") // not working
 	private WebElement reviewSubmit;
 	
-	@FindBy(xpath = "")//not working
-	private WebElement newMovieReview;
-	
-	//Movie Search
-	
-	@FindBy(xpath = "")//not working
+	@FindBy(xpath = "/html[1]/body[1]/app-root[1]/div[1]/div[2]/section[1]/p[1]") // not working
+	private WebElement reviewErrorMessage;
+
+	// Movie Search
+
+
+
+	@FindBy(xpath = "//body/app-root[1]/app-all-reviews[1]/div[1]/app-movie-search[1]/div[1]/input[1]")
 	private WebElement movieTitleSearchInput;
-	
-	@FindBy(xpath = "")//not working
+
+	@FindBy(xpath = "//button[contains(text(),'Search')]")
 	private WebElement movieTitleSearchButton;
-	
-	@FindBy(xpath = "")//not working
+
+	@FindBy(xpath = "//body/app-root[1]/app-all-reviews[1]/div[1]/app-movie-search[1]/div[2]/div[1]/div[1]/div[1]/div[2]/p[1]") 
+																																
 	private WebElement movieReviewTitleSearchResult;
+
+	@FindBy(xpath = "//p[contains(text(),'No results found')]") 
+	private WebElement movieTitleSearchError;
 
 	public MovieTweeterPage(WebDriver driver) {
 		this.driver = driver;
@@ -96,11 +122,13 @@ public class MovieTweeterPage {
 	}
 
 	public WebElement getPasswordInput() {
-		return passwordInput;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.passwordInput));
+//		return passwordInput;
 	}
 
 	public WebElement getLoginButton() {
-		return loginButton;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.loginButton));
+//		return loginButton;
 	}
 
 	public WebElement getInvalidLoginMessage() {
@@ -127,33 +155,74 @@ public class MovieTweeterPage {
 	}
 
 	public WebElement getMovieReviewImdbIDInput() {
-		return movieReviewImdbIDInput;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.movieReviewImdbIDInput));
+//		return movieReviewImdbIDInput;
 	}
 
 	public WebElement getMovieReviewRatingInput() {
-		return movieReviewRatingInput;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.movieReviewRatingInput));
+//		return movieReviewRatingInput;
 	}
 
 	public WebElement getReviewSubmit() {
-		return reviewSubmit;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.reviewSubmit));
+//		return reviewSubmit;
 	}
 
 	public WebElement getNewMovieReview() {
-		return newMovieReview;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.newMovieReview));
+//		return newMovieReview;
 	}
 
 	public WebElement getMovieTitleSearchInput() {
 		return movieTitleSearchInput;
 	}
 
-	public WebElement getMovieTitleSearchButton() {
+	public WebElement getMovieTitleSearchButton() throws InterruptedException {
+		Thread.sleep(500); // wait for button?
 		return movieTitleSearchButton;
 	}
 
 	public WebElement getMovieReviewTitleSearchResult() {
-		return movieReviewTitleSearchResult;
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.movieReviewTitleSearchResult));
+//		return movieReviewTitleSearchResult;
+	}
+
+	public WebElement getSignOutButton() {
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.signOutButton));
+//		return signOutButton;
+	}
+
+	public WebElement getSearchTitles() {
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.searchTitles));
+//		return searchTitles;
+	}
+
+	public WebElement getMovieTitleSearchError() {
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.movieTitleSearchError));
+//		return movieTitleSearchError;
+	}
+
+	public WebElement getSearchMoviesFirstResult() {
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.searchMoviesFirstResult));
+//		return searchMoviesFirstResult;
 	}
 	
-	
+	public WebElement getMovieReviewTitleInput() throws InterruptedException {
+		Thread.sleep(1000);
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.movieReviewTitleInput));
+//		return movieReviewTitleInput;
+	}
 
+	public WebElement getMovieReviewBodyInput() throws InterruptedException {
+		Thread.sleep(1000);
+		return this.wdw.until(ExpectedConditions.visibilityOf(this.movieReviewBodyInput));
+//		return movieReviewBodynput;
+	}
+	
+		public WebElement getReviewErrorMessage() {
+			return this.wdw.until(ExpectedConditions.visibilityOf(this.reviewErrorMessage));
+//			return reviewErrorMessage;
+		
+	}
 }

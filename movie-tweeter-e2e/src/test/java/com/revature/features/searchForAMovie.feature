@@ -12,15 +12,3 @@ Examples:
 | "Harry Potter"| "Harry Potter and the Deathly Hallows: Part 2 (2011)" |
 | "The Matrix" | "The Matrix (1999)" |
 | "Finding Nemo" | "Finding Nemo (2003)" |
-
-Scenario Outline: Search for a movie (negative test)
-Given I am at the search module
-When I type in an movie title of <movieName>
-
-And I click the Search button
-Then I should not see an error message
-
-Examples:
-| movieName | 
-| null | 
-| "bjbkjbj" | 

@@ -22,7 +22,7 @@ public class LoginTest {
 
 		this.driver = new ChromeDriver();
 
-		this.driver.get("http://localhost:5500");
+		this.driver.get("http://localhost:4200");
 		this.movieTweeterPage = new MovieTweeterPage(driver);
 		//open login modal
 		this.movieTweeterPage.getSignInButton().click();
@@ -48,10 +48,13 @@ public class LoginTest {
 		this.movieTweeterPage.getLoginButton().click();
 	}
 
-	@Then("I should be sent to the review page")
-	public void i_should_be_sent_to_the_employee_page() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+	@Then("I should be sent to search titles")
+	public void i_should_be_sent_to_the_search_titles() {
+		String expectedSearchHeadingText = "Search Titles";
+		
+		Assertions.assertEquals(expectedSearchHeadingText, this.movieTweeterPage.getSearchTitles().getText());
+		
+		this.driver.quit();
 	}
 
 	@Then("I should be see a message of {string}")

@@ -22,7 +22,7 @@ public class AddUserTest {
 
 		this.driver = new ChromeDriver();
 
-		this.driver.get("http://localhost:5500");
+		this.driver.get("http://localhost:4200");
 		this.movieTweeterPage = new MovieTweeterPage(driver);
 		//open sign up modal
 		this.movieTweeterPage.getSignUpButton().click();

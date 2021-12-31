@@ -7,6 +7,6 @@ Then I return to the login page
 
 Examples:
 | username | password |
-| "JohnDoe"| "password" |
+| "JohnDoeFake" | "password" |
 | "MikeDingeldein" | "wordpass" |
 
